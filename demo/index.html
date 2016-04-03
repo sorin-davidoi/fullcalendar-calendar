@@ -22,6 +22,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <link rel="import" href="../../iron-icons/iron-icons.html">
     <link rel="import" href="../../paper-icon-button/paper-icon-button.html">
+    <link rel="import" href="../../paper-item/paper-item.html">
+    <link rel="import" href="../../paper-menu/paper-menu.html">
+    <link rel="import" href="../../paper-menu-button/paper-menu-button.html">
 
     <link rel="import" href="../fullcalendar-calendar.html">
   </head>
@@ -31,6 +34,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <p>An example of <code>&lt;fullcalendar-calendar&gt;</code>:</p>
 
       <span>[[view.title]]</span>
+
+      <paper-menu-button>
+        <paper-icon-button icon="event" class="dropdown-trigger"></paper-icon-button>
+        <paper-menu class="dropdown-content" selected="0">
+          <paper-item view="month" on-tap="changeView">Month</paper-item>
+          <paper-item view="basicWeek" on-tap="changeView">Basic week</paper-item>
+          <paper-item view="basicDay" on-tap="changeView">Basic Day</paper-item>
+          <paper-item view="agendaWeek" on-tap="changeView">AgendaWeek</paper-item>
+          <paper-item view="agendaDay" on-tap="changeView">AgendaDay</paper-item>
+        </paper-menu>
+      </paper-menu-button>
 
       <paper-icon-button id="previous" icon="chevron-left"></paper-icon-button>
       <paper-icon-button id="next" icon="chevron-right"></paper-icon-button>
@@ -51,6 +65,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         var previous = dom.querySelector('#previous');
         var next = dom.querySelector('#next');
+
+        app.changeView = function(event) {
+          calendar.changeView(event.target.attributes.getNamedItem('view').value);
+        }
 
         previous.addEventListener('tap', function() { calendar.previous(); });
         next.addEventListener('tap', function() { calendar.next(); });

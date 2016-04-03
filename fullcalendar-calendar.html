@@ -100,7 +100,15 @@ Example:
        * Moves the calendar one step back (either by a month, week, or day).
        * [Documentation](http://fullcalendar.io/docs/current_date/prev/)
        */
-      previous: function() { this._calendar.fullCalendar('prev'); }
+      previous: function() { this._calendar.fullCalendar('prev'); },
+
+      /**
+       * Immediately switches to a different view.
+       * [Documentation](http://fullcalendar.io/docs/views/changeView/)
+       *
+       * @param {string} viewName One of the [available views](http://fullcalendar.io/docs/views/Available_Views/)
+       */
+      changeView: function(viewName) { this._calendar.fullCalendar('changeView', viewName); }
     });
   </script>
 </dom-module>
