@@ -69,7 +69,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       var app = document.querySelector('#app');
 
       app.options = {
-        header: { left: null, right: null }
+        header: { left: null, right: null },
+        events: [
+          { title: 'Discover fullcalendar-calendar', start: moment() },
+          { title: 'Install fullcalendar-calendar', start: moment().add(2, 'day') },
+          { title: 'Play around with fullcalendar-calendar', start: moment().add(4, 'days'), end: moment().add(5, 'days') },
+          { title: 'Star fullcalendar-calendar on Github', start: moment().add(7, 'days'), end: moment().add(7, 'days').add(25, 'minutes') }
+        ]
       };
 
       app.addEventListener('dom-change', function() {
