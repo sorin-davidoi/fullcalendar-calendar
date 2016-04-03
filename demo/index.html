@@ -25,6 +25,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <link rel="import" href="../../paper-item/paper-item.html">
     <link rel="import" href="../../paper-menu/paper-menu.html">
     <link rel="import" href="../../paper-menu-button/paper-menu-button.html">
+    <link rel="import" href="../../paper-toast/paper-toast.html">
 
     <link rel="import" href="../fullcalendar-calendar.html">
 
@@ -55,7 +56,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </div>
       </div>
 
-      <fullcalendar-calendar options="[[options]]" view="{{view}}"></fullcalendar-calendar>
+      <fullcalendar-calendar
+        options="[[options]]"
+        view="{{view}}"
+        on-day-click="notifyDayClick"
+      ></fullcalendar-calendar>
+
+      <paper-toast text="dsadsa"></paper-toast>
     </template>
 
     <script>
@@ -67,6 +74,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       app.addEventListener('dom-change', function() {
         var calendar = Polymer.dom(document).querySelector('fullcalendar-calendar');
+        var notification = Polymer.dom(document).querySelector('paper-toast');
 
         app.changeView = function(event) {
           calendar.changeView(event.target.attributes.getNamedItem('view').value);
@@ -74,6 +82,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         app.previous = function() { calendar.previous(); }
         app.next = function() { calendar.next(); }
+
+        app.notifyDayClick = function(event) {
+          notification.setAttribute('text', 'You clicked on: ' + event.detail.date.format());
+          notification.open();
+        }
       });
     </script>
 

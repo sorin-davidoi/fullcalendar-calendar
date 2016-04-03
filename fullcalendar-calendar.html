@@ -35,6 +35,18 @@ Example:
 
       properties: {
         /**
+         * Fired when the user clicks on a day. Only fires if the event is
+         * not overridden in options.
+         * [Documentation](http://fullcalendar.io/docs/mouse/dayClick/)
+         *
+         * @event day-click
+         * @param {object} date moment for the clicked day
+         * @param {object} jsEvent the native JavaScript event with low-level information such as click coordinates
+         * @param {object} view the current view object
+         * @param {object} resourceObj a Resource Object parameter if the click happened on a resource
+         */
+
+        /**
          * The underlying FullCalendar element.
          *
          * @type Object
@@ -83,6 +95,12 @@ Example:
 
             if (viewRender) { viewRender(view, element); }
           }.bind(this);
+
+          if (!options.dayClick) {
+            options.dayClick = function(date, jsEvent, view, resourceObj) {
+              this.fire('day-click', { date: date, jsEvent: jsEvent, view: view, resourceObj: resourceObj });
+            }.bind(this);
+          }
 
           this._calendar.fullCalendar(options);
         }.bind(this));
