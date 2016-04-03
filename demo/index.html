@@ -27,21 +27,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </head>
   <body unresolved>
 
-    <p>An example of <code>&lt;fullcalendar-calendar&gt;</code>:</p>
+    <template is="dom-bind" id="app">
+      <p>An example of <code>&lt;fullcalendar-calendar&gt;</code>:</p>
 
-    <paper-icon-button id="previous" icon="chevron-left"></paper-icon-button>
-    <paper-icon-button id="next" icon="chevron-right"></paper-icon-button>
+      <paper-icon-button id="previous" icon="chevron-left"></paper-icon-button>
+      <paper-icon-button id="next" icon="chevron-right"></paper-icon-button>
 
-    <fullcalendar-calendar></fullcalendar-calendar>
+      <fullcalendar-calendar options="[[options]]"></fullcalendar-calendar>
+    </template>
 
     <script>
-      var calendar = document.querySelector('fullcalendar-calendar');
+      var app = document.querySelector('#app');
 
-      var previous = document.querySelector('#previous');
-      var next = document.querySelector('#next');
+      app.options = {
+        header: { left: null, right: null }
+      };
 
-      previous.addEventListener('tap', function() { calendar.previous(); });
-      next.addEventListener('tap', function() { calendar.next(); });
+      app.addEventListener('dom-change', function() {
+        var dom = Polymer.dom(document);
+        var calendar = dom.querySelector('fullcalendar-calendar');
+
+        var previous = dom.querySelector('#previous');
+        var next = dom.querySelector('#next');
+
+        previous.addEventListener('tap', function() { calendar.previous(); });
+        next.addEventListener('tap', function() { calendar.next(); });
+      });
     </script>
 
   </body>

@@ -48,12 +48,20 @@ Example:
          *
          * @type Object
          */
-        options: { type: Object, value: function() { return { }; } }
+        options: {
+          type: Object,
+          value: function() { return { }; },
+          observer: '_initialize'
+        }
       },
 
-      attached: function() {
-        this._calendar = $(this.$.calendar);
-        this._calendar.fullCalendar(this.options);
+      ready: function() { this._calendar = $(this.$.calendar); },
+
+      /**
+       * Initialized the calendar with the provided options.
+       */
+      _initialize: function(options) {
+        this.async(function() { this._calendar.fullCalendar(options) }.bind(this));
       },
 
       /**
