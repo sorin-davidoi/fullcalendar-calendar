@@ -8,6 +8,7 @@
     "calendar",
     "fullcalendar",
     "web-component",
+    "web-components",
     "polymer"
   ],
   "main": "fullcalendar-calendar.html",
