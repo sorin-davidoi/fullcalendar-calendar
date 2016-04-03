@@ -17,6 +17,14 @@ Example:
 
     <fullcalendar-calendar></fullcalendar-calendar>
 
+### Styling
+
+The following custom properties and mixins are available for styling:
+
+Custom property | Description | Default
+----------------|-------------|----------
+`--fullcalendar` | Mixin applied to the FullCalendar element | `{}`
+
 @demo demo/index.html
 @hero hero.svg
 -->
@@ -25,7 +33,11 @@ Example:
   <template>
     <style>
       :host { display: block; }
+
+      #calendar { @apply(--fullcalendar); }
     </style>
+
+    <div id="calendar"></div>
 
   </template>
 
@@ -73,7 +85,7 @@ Example:
         view: { type: Object, readOnly: true, notify: true }
       },
 
-      ready: function() { this._calendar = $(this); },
+      ready: function() { this._calendar = $(this.$.calendar); },
 
       /**
        * Initialized the calendar with the provided options.
