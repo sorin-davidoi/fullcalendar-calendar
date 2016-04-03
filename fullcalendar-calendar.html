@@ -60,7 +60,7 @@ Example:
          *
          * @type Object
          */
-        view: { type: Object, notify: true }
+        view: { type: Object, readOnly: true, notify: true }
       },
 
       ready: function() { this._calendar = $(this.$.calendar); },
@@ -73,7 +73,7 @@ Example:
           var viewRender = options.viewRender;
 
           options.viewRender = function(view, element) {
-            this.view = view;
+            this._setView(view);
 
             // TODO: Why is this necessary?
             // Shouldn't they be picked up by the assignment?
