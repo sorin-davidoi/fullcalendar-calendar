@@ -1,0 +1,31 @@
+{
+  "name": "fullcalendar-calendar",
+  "version": "0.0.1",
+  "authors": [
+    "Sorin Davidoi <sorin.davidoi@gmail.com>"
+  ],
+  "description": "Web Component wrapper for FullCalendar.",
+  "keywords": [
+    "calendar",
+    "fullcalendar",
+    "web-component",
+    "polymer"
+  ],
+  "main": "fullcalendar-calendar.html",
+  "license": "http://polymer.github.io/LICENSE.txt",
+  "homepage": "https://github.com/sorin-davidoi/fullcalendar-calendar/",
+  "ignore": [
+    "/.*",
+    "/test/"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.2.0"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "web-component-tester": "^4.0.0",
+    "fullcalendar": "^2.6.1",
+    "jquery": "^2.2.2",
+    "moment": "^2.12.0"
+  }
+}
