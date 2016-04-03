@@ -27,8 +27,6 @@ Example:
       :host { display: block; }
     </style>
 
-    <div id="calendar"></div>
-
   </template>
 
   <script>
@@ -63,7 +61,7 @@ Example:
         view: { type: Object, readOnly: true, notify: true }
       },
 
-      ready: function() { this._calendar = $(this.$.calendar); },
+      ready: function() { this._calendar = $(this); },
 
       /**
        * Initialized the calendar with the provided options.
