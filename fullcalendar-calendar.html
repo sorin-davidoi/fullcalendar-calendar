@@ -36,11 +36,17 @@ Example:
       is: 'fullcalendar-calendar',
 
       properties: {
-
+        /**
+         * The underlying FullCalendar element.
+         *
+         * @type Object
+         */
+        _calendar: { type: Object, notify: true }
       },
 
       attached: function() {
-        $(this.$.calendar).fullCalendar({});
+        this._calendar = $(this.$.calendar);
+        this._calendar.fullCalendar({});
       }
     });
   </script>
