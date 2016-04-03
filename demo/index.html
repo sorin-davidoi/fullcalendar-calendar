@@ -30,10 +30,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <template is="dom-bind" id="app">
       <p>An example of <code>&lt;fullcalendar-calendar&gt;</code>:</p>
 
+      <span>[[view.title]]</span>
+
       <paper-icon-button id="previous" icon="chevron-left"></paper-icon-button>
       <paper-icon-button id="next" icon="chevron-right"></paper-icon-button>
 
-      <fullcalendar-calendar options="[[options]]"></fullcalendar-calendar>
+      <fullcalendar-calendar options="[[options]]" view="{{view}}"></fullcalendar-calendar>
     </template>
 
     <script>

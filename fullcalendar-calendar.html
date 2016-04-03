@@ -52,7 +52,15 @@ Example:
           type: Object,
           value: function() { return { }; },
           observer: '_initialize'
-        }
+        },
+
+        /**
+         * Info about the current view
+         * [Documentation](http://fullcalendar.io/docs/views/View_Object/)
+         *
+         * @type Object
+         */
+        view: { type: Object, notify: true }
       },
 
       ready: function() { this._calendar = $(this.$.calendar); },
@@ -61,7 +69,25 @@ Example:
        * Initialized the calendar with the provided options.
        */
       _initialize: function(options) {
-        this.async(function() { this._calendar.fullCalendar(options) }.bind(this));
+        this.async(function() {
+          var viewRender = options.viewRender;
+
+          options.viewRender = function(view, element) {
+            this.view = view;
+
+            // TODO: Why is this necessary?
+            // Shouldn't they be picked up by the assignment?
+            for (var variable in view) {
+              if (view.hasOwnProperty(variable)) {
+                this.notifyPath('view.' + variable, view[variable]);
+              }
+            }
+
+            if (viewRender) { viewRender(view, element); }
+          }.bind(this);
+
+          this._calendar.fullCalendar(options);
+        }.bind(this));
       },
 
       /**
