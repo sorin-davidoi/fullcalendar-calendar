@@ -26,6 +26,8 @@
     "web-component-tester": "^4.0.0",
     "fullcalendar": "^2.6.1",
     "jquery": "^2.2.2",
-    "moment": "^2.12.0"
+    "moment": "^2.12.0",
+    "paper-elements": "PolymerElements/paper-elements#^1.0.7",
+    "iron-elements": "PolymerElements/iron-elements#^1.0.9"
   }
 }

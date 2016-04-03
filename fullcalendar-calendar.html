@@ -41,13 +41,32 @@ Example:
          *
          * @type Object
          */
-        _calendar: { type: Object, notify: true }
+        _calendar: { type: Object, notify: true },
+
+        /**
+         * Options passed to FulLCalendar.
+         *
+         * @type Object
+         */
+        options: { type: Object, value: function() { return { }; } }
       },
 
       attached: function() {
         this._calendar = $(this.$.calendar);
-        this._calendar.fullCalendar({});
-      }
+        this._calendar.fullCalendar(this.options);
+      },
+
+      /**
+       * Moves the calendar one step forward (either by a month, week, or day).
+       * [Documentation](http://fullcalendar.io/docs/current_date/next/)
+       */
+      next: function() { this._calendar.fullCalendar('next'); },
+
+      /**
+       * Moves the calendar one step back (either by a month, week, or day).
+       * [Documentation](http://fullcalendar.io/docs/current_date/prev/)
+       */
+      previous: function() { this._calendar.fullCalendar('prev'); }
     });
   </script>
 </dom-module>
