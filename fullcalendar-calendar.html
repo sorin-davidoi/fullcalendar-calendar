@@ -114,6 +114,8 @@ Custom property | Description | Default
             }.bind(this);
           }
 
+          // TODO: Find a better way to update
+          this._calendar.fullCalendar('destroy');
           this._calendar.fullCalendar(options);
         }.bind(this));
       },
