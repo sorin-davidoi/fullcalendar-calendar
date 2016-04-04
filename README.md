@@ -4,6 +4,8 @@ Web Component wrapper for [FullCalendar](http://fullcalendar.io/).
 
 Documentation and demo available [here](http://sorin-davidoi.github.io/fullcalendar-calendar/components/fullcalendar-calendar/).
 
+**Note**: This is a work-in-progress.
+
 # Install
 
 ```
