@@ -10,6 +10,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 <html>
   <head>
+    <script>
+      window.Polymer = window.Polymer || { dom: 'shadow' };
+    </script>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
     <title>fullcalendar-calendar Demo</title>
@@ -18,8 +22,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <script src='../../moment/min/moment.min.js'></script>
     <script src='../../fullcalendar/dist/fullcalendar.min.js'></script>
 
-    <link rel='stylesheet' href='../../fullcalendar/dist/fullcalendar.min.css' />
-
     <link rel="import" href="../../iron-icons/iron-icons.html">
     <link rel="import" href="../../paper-icon-button/paper-icon-button.html">
     <link rel="import" href="../../paper-item/paper-item.html">
@@ -27,6 +29,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <link rel="import" href="../../paper-menu-button/paper-menu-button.html">
     <link rel="import" href="../../paper-toast/paper-toast.html">
 
+    <link rel="import" href="../fullcalendar-theme.html">
     <link rel="import" href="../fullcalendar-calendar.html">
 
     <style>
