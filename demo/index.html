@@ -40,7 +40,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <template is="dom-bind" id="app">
       <div class="actions">
-        <div>[[view.title]]</div>
+        <div>[[title]]</div>
 
         <div>
           <paper-menu-button>
@@ -62,6 +62,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <fullcalendar-calendar
         options="[[options]]"
         view="{{view}}"
+        on-view-render="setTitle"
         on-day-click="notifyDayClick"
       ></fullcalendar-calendar>
 
@@ -96,6 +97,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           notification.setAttribute('text', 'You clicked on: ' + event.detail.date.format());
           notification.open();
         }
+
+        app.setTitle = function(event) {
+          this.title = event.detail.view.title;
+        };
       });
     </script>
 
