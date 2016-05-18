@@ -369,15 +369,21 @@ Custom property | Description | Default
           // Clear the previously saved callbacks
           this._originalCallbacks = { };
 
+          var calendarOptions = { };
+
+          Object.keys(options).forEach(function(key) {
+            calendarOptions[key] = options[key];
+          })
+
           // Hook-up our callback such taht we can fire events
           Object.keys(this._callbacks).forEach(function(key) {
             this._originalCallbacks[key] = options[key];
-            this.options[key] = this._callbacks[key];
+            calendarOptions[key] = this._callbacks[key];
           }.bind(this));
 
           // TODO: Find a better way to update
           this._calendar.fullCalendar('destroy');
-          this._calendar.fullCalendar(options);
+          this._calendar.fullCalendar(calendarOptions);
         }.bind(this));
       },
 
