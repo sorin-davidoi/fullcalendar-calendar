@@ -359,7 +359,12 @@ Custom property | Description | Default
         } }
       },
 
-      ready: function() { this._calendar = $(this.$.calendar); },
+      ready: function() {
+        // https://www.polymer-project.org/1.0/docs/devguide/styling#scope-subtree
+        this.scopeSubtree(this.$.calendar, true);
+
+        this._calendar = $(this.$.calendar);
+      },
 
       /**
        * Initialized the calendar with the provided options.
