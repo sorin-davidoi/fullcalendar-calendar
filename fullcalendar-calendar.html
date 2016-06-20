@@ -9,6 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-resizable-behavior/iron-resizable-behavior.html">
 
 <!--
 Web Component wrapper for FullCalendar.
@@ -54,6 +55,10 @@ Custom property | Description | Default
   <script>
     Polymer({
       is: 'fullcalendar-calendar',
+
+      behaviors: [
+        Polymer.IronResizableBehavior,
+      ],
 
       properties: {
         /**
@@ -359,6 +364,10 @@ Custom property | Description | Default
         } }
       },
 
+      listeners: {
+        'iron-resize': 'render',
+      },
+
       ready: function() {
         // https://www.polymer-project.org/1.0/docs/devguide/styling#scope-subtree
         this.scopeSubtree(this.$.calendar, true);
@@ -410,7 +419,13 @@ Custom property | Description | Default
        *
        * @param {string} viewName One of the [available views](http://fullcalendar.io/docs/views/Available_Views/)
        */
-      changeView: function(viewName) { this._calendar.fullCalendar('changeView', viewName); }
+      changeView: function(viewName) { this._calendar.fullCalendar('changeView', viewName); },
+
+      /**
+       * Immediately forces the calendar to render and/or readjusts its size.
+       * [Documentation](http://fullcalendar.io/docs/display/render/)
+       */
+      render: function() { this._calendar.fullCalendar('render'); },
     });
   </script>
 </dom-module>
