@@ -288,7 +288,10 @@ Custom property | Description | Default
          */
         options: {
           type: Object,
-          observer: '_initialize'
+          observer: '_initialize',
+          value: function() {
+            return { };
+          },
         },
 
         _originalCallbacks: { type: Object },
