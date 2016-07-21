@@ -12,15 +12,15 @@ Documentation and demo available [here](http://sorin-davidoi.github.io/fullcalen
 bower install --save fullcalendar-calendar
 ```
 
-Since `fullcalendar-calendar` is just a wrapper, you will also need to install FullCalendar and its dependencies:
-
-```
-bower install --save fullcalendar jquery moment
-```
-
 # Usage
 
-Make sure you load all the required dependencies:
+```html
+<link rel="import" href="fullcalendar-calendar.html">
+
+<fullcalendar-calendar></fullcalendar-calendar>
+```
+
+`fullcalendar-calendar.html` includes all the required dependencies (jQuery, moment and FullCalendar). However, since these libraries do not provide HTML import files, the Javascript files are loaded directly. This may prove problematic if you use any of the libraries in other part of your project, since you will load them twice. If this is the case, use `fullcalendar-calendar-no-deps.html`, which includes just the WebComponent wrapper, without the dependencies. However, you must now load the dependencies yourself:
 
 ```html
 <!-- The order is important, jquery and moment must come before fullcalendar -->
@@ -28,16 +28,7 @@ Make sure you load all the required dependencies:
 <script src='moment/min/moment.min.js'></script>
 <script src='fullcalendar/dist/fullcalendar.min.js'></script>
 
-<!-- Optional -->
-<link rel='stylesheet' href='fullcalendar/dist/fullcalendar.min.css'/>
-
-<link rel="import" href="fullcalendar-calendar.html">
-```
-
-You can now use it:
-
-```html
-<fullcalendar-calendar></fullcalendar-calendar>
+<link rel="import" href="fullcalendar-calendar-no-deps.html">
 ```
 
 For all the options please consult the [documentation](http://sorin-davidoi.github.io/fullcalendar-calendar/components/fullcalendar-calendar/).
