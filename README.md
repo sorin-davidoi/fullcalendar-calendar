@@ -15,6 +15,7 @@ bower install --save fullcalendar-calendar
 # Usage
 
 ```html
+<link rel="import" href="fullcalendar-theme.html">
 <link rel="import" href="fullcalendar-calendar.html">
 
 <fullcalendar-calendar></fullcalendar-calendar>
