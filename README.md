@@ -29,6 +29,7 @@ bower install --save fullcalendar-calendar
 <script src='moment/min/moment.min.js'></script>
 <script src='fullcalendar/dist/fullcalendar.min.js'></script>
 
+<link rel="import" href="fullcalendar-theme.html">
 <link rel="import" href="fullcalendar-calendar-no-deps.html">
 ```
 
