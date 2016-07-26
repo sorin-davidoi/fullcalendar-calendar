@@ -1,0 +1,105 @@
+<!doctype html>
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<html>
+  <head>
+    <script>
+      window.Polymer = window.Polymer || { dom: 'shadow' };
+    </script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <title>fullcalendar-calendar Demo</title>
+    <script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
+
+    <link rel="import" href="../../iron-icons/iron-icons.html">
+    <link rel="import" href="../../paper-icon-button/paper-icon-button.html">
+    <link rel="import" href="../../paper-item/paper-item.html">
+    <link rel="import" href="../../paper-menu/paper-menu.html">
+    <link rel="import" href="../../paper-menu-button/paper-menu-button.html">
+    <link rel="import" href="../../paper-toast/paper-toast.html">
+
+    <link rel="import" href="../fullcalendar-theme.html">
+    <link rel="import" href="../fullcalendar-calendar.html">
+
+    <style>
+      .actions { display: flex; justify-content: space-between; align-items: center; }
+    </style>
+  </head>
+  <body unresolved>
+
+    <template is="dom-bind" id="app">
+      <div class="actions">
+        <div>[[title]]</div>
+
+        <div>
+          <paper-menu-button>
+            <paper-icon-button icon="event" class="dropdown-trigger"></paper-icon-button>
+            <paper-menu class="dropdown-content" selected="0">
+              <paper-item view="month" on-tap="changeView">Month</paper-item>
+              <paper-item view="basicWeek" on-tap="changeView">Basic week</paper-item>
+              <paper-item view="basicDay" on-tap="changeView">Basic day</paper-item>
+              <paper-item view="agendaWeek" on-tap="changeView">Agenda week</paper-item>
+              <paper-item view="agendaDay" on-tap="changeView">Agenda day</paper-item>
+            </paper-menu>
+          </paper-menu-button>
+
+          <paper-icon-button id="previous" icon="chevron-left" on-transitionend="previous"></paper-icon-button>
+          <paper-icon-button id="next" icon="chevron-right" on-transitionend="next"></paper-icon-button>
+        </div>
+      </div>
+
+      <fullcalendar-calendar
+        options="[[options]]"
+        view="{{view}}"
+        on-view-render="setTitle"
+        on-day-click="notifyDayClick"
+      ></fullcalendar-calendar>
+
+      <paper-toast text="dsadsa"></paper-toast>
+    </template>
+
+    <script>
+      var app = document.querySelector('#app');
+
+      app.options = {
+        header: false,
+        events: [
+          { title: 'Discover fullcalendar-calendar', start: moment() },
+          { title: 'Install fullcalendar-calendar', start: moment().add(2, 'day') },
+          { title: 'Play around with fullcalendar-calendar', start: moment().add(4, 'days'), end: moment().add(5, 'days') },
+          { title: 'Star fullcalendar-calendar on Github', start: moment().add(7, 'days'), end: moment().add(7, 'days').add(25, 'minutes') }
+        ]
+      };
+
+      app.addEventListener('dom-change', function() {
+        var calendar = Polymer.dom(document).querySelector('fullcalendar-calendar');
+        var notification = Polymer.dom(document).querySelector('paper-toast');
+
+        app.changeView = function(event) {
+          calendar.changeView(event.target.attributes.getNamedItem('view').value);
+        }
+
+        app.previous = function() { calendar.previous(); }
+        app.next = function() { calendar.next(); }
+
+        app.notifyDayClick = function(event) {
+          notification.setAttribute('text', 'You clicked on: ' + event.detail.date.format());
+          notification.open();
+        }
+
+        app.setTitle = function(event) {
+          this.title = event.detail.view.title;
+        };
+      });
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,397 @@
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../iron-resizable-behavior/iron-resizable-behavior.html">
+
+<script type="text/javascript">
+  /**
+   * @polymerBehavior FullCalendarBehavior
+   * @demo demo/index.html
+   */
+  FullCalendarBehaviorImplementation = {
+    properties: {
+      /**
+       * Fired when a new date-range is rendered, or when the view type switches.
+       * [Documentation](http://fullcalendar.io/docs/display/viewRender/)
+       *
+       * @event view-render
+       * @param {object} view the View Object for the new view
+       * @param {object} element a jQuery element for the container of the new view
+       */
+
+      /**
+       * Fired when a rendered date-range needs to be torn down.
+       * [Documentation](http://fullcalendar.io/docs/display/viewDestroy/)
+       *
+       * @event view-destroy
+       * @param {object} view the View Object for the view that is about to be destroyed
+       * @param {object} element a jQuery element for the container of the view
+       */
+
+      /**
+       * Fired after the calendar's dimensions have been changed due to the browser window being resized.
+       * [Documentation](http://fullcalendar.io/docs/display/windowResize/)
+       *
+       * @event window-resize
+       * @param {object} view the current View Object
+       */
+
+      /**
+       * Fired when the user clicks on a day.
+       * [Documentation](http://fullcalendar.io/docs/mouse/dayClick/)
+       *
+       * @event day-click
+       * @param {object} date moment for the clicked day
+       * @param {object} jsEvent the native JavaScript event with low-level information such as click coordinates
+       * @param {object} view the current view object
+       * @param {object} resourceObj a Resource Object parameter if the click happened on a resource
+       */
+
+      /**
+       * Fired when the user clicks an event.
+       * [Documentation](http://fullcalendar.io/docs/mouse/eventClick/)
+       *
+       * @event event-click
+       * @param {object} event an Event Object that holds the event's information (date, title, etc)
+       * @param {object} jsEvent the native JavaScript event with low-level information such as click coordinates
+       * @param {object} view the current view object
+       */
+
+      /**
+      * Fired when the user mouses over an event.
+      * [Documentation](http://fullcalendar.io/docs/mouse/eventMouseover/)
+      *
+      * @event event-mouseover
+      * @param {object} event an Event Object that holds the event's information (date, title, etc)
+      * @param {object} jsEvent the native JavaScript event with low-level information such as click coordinates
+      * @param {object} view the current view object
+      */
+
+      /**
+      * Fired when the user mouses out of an event.
+      * [Documentation](http://fullcalendar.io/docs/mouse/eventMouseout/)
+      *
+      * @event event-mouseout
+      * @param {object} event an Event Object that holds the event's information (date, title, etc)
+      * @param {object} jsEvent the native JavaScript event with low-level information such as click coordinates
+      * @param {object} view the current view object
+      */
+
+      /**
+      * Fired after a selection is made.
+      * [Documentation](http://fullcalendar.io/docs/selection/select_callback/)
+      *
+      * @event select
+      * @param {object} start a Moment indicating the beginning of the selection
+      * @param {object} end a Moment indicating the end of the selection
+      * @param {object} jsEvent the primitive JavaScript event with information such as mouse coordinates
+      * @param {object} view the current view object
+      * @param {object} resource the Resource Object the user selected.
+      */
+
+      /**
+      * Fired when the current selection is cleared.
+      * [Documentation](http://fullcalendar.io/docs/selection/unselect_callback/)
+      *
+      * @event unselect
+      * @param {object} view the current view object
+      * @param {object} jsEvent the primitive JavaScript event with information such as mouse coordinates
+      */
+
+      /**
+      * Fired after an event has been placed on the calendar in its final position.
+      * [Documentation](http://fullcalendar.io/docs/event_rendering/eventAfterRender/)
+      *
+      * @event event-after-render
+      * @param {object} event
+      * @param {object} element
+      * @param {object} view
+      */
+
+      /**
+      * Fired after all events have finished rendering.
+      * [Documentation](http://fullcalendar.io/docs/event_rendering/eventAfterAllRender/)
+      *
+      * @event event-after-all-render
+      * @param {object} view
+      */
+
+      /**
+      * Fired before an event's element is removed from the DOM.
+      * [Documentation](http://fullcalendar.io/docs/event_rendering/eventDestroy/)
+      *
+      * @event event-destroy
+      * @param {object} event the Event Object
+      * @param {object} element a jQuery element that will be removed
+      * @param {object} view
+      */
+
+      /**
+      * Fired when event dragging begins.
+      * [Documentation](http://fullcalendar.io/docs/ui/eventDragStart/)
+      *
+      * @event event-drag-start
+      * @param {object} event an Event Object that hold the event's information (date, title, etc)
+      * @param {object} jsEvent the native javascript event with low-level information such as click coordinates
+      * @param {object} ui an empty object. Before FullCalendar version 2.1, the jQuery UI object
+      * @param {object} view the current View Object
+      */
+
+      /**
+      * Fired when event dragging stops.
+      * [Documentation](http://fullcalendar.io/docs/ui/eventDragStop/)
+      *
+      * @event event-drag-stop
+      * @param {object} event an Event Object that hold the event's information (date, title, etc)
+      * @param {object} jsEvent the native javascript event with low-level information such as click coordinates
+      * @param {object} ui an empty object. Before FullCalendar version 2.1, the jQuery UI object
+      * @param {object} view the current View Object
+      */
+
+      /**
+      * Fired when dragging stops and the event has moved to a different day/time.
+      * [Documentation](http://fullcalendar.io/docs/ui/eventDrop/)
+      *
+      * @event event-drop
+      * @param {object} event an Event Object that hold the event's information (date, title, etc)
+      * @param {object} delta a Duration Object that represents the amount of time the event was moved by
+      * @param {object} jsEvent the native javascript event with low-level information such as click coordinates
+      * @param {object} ui an empty object. Before FullCalendar version 2.1, the jQuery UI object
+      * @param {object} view the current View Object
+      */
+
+      /**
+      * Fired when event resizing begins.
+      * [Documentation](http://fullcalendar.io/docs/ui/eventResizeStart/)
+      *
+      * @event event-resize-start
+      * @param {object} event an Event Object that hold the event's information (date, title, etc)
+      * @param {object} jsEvent the native javascript event with low-level information such as click coordinates
+      * @param {object} ui an empty object. Before FullCalendar version 2.1, the jQuery UI object
+      * @param {object} view the current View Object
+      */
+
+      /**
+      * Fired when event resizing stops.
+      * [Documentation](http://fullcalendar.io/docs/ui/eventResizeStop/)
+      *
+      * @event event-resize-stop
+      * @param {object} event an Event Object that hold the event's information (date, title, etc)
+      * @param {object} jsEvent the native javascript event with low-level information such as click coordinates
+      * @param {object} ui an empty object. Before FullCalendar version 2.1, the jQuery UI object
+      * @param {object} view the current View Object
+      */
+
+      /**
+      * Fired when resizing stops and the event has changed in duration.
+      * [Documentation](http://fullcalendar.io/docs/ui/eventResize/)
+      *
+      * @event event-resize
+      * @param {object} event an Event Object that hold the event's information (date, title, etc)
+      * @param {object} delta a Duration Object that represents the amount of time the event's end was extended by
+      * @param {object} jsEvent the native javascript event with low-level information such as click coordinates
+      * @param {object} ui an empty object. Before FullCalendar version 2.1, the jQuery UI object
+      * @param {object} view the current View Object
+      */
+
+      /**
+      * Fired when a valid jQuery UI draggable has been dropped onto the calendar.
+      * [Documentation](http://fullcalendar.io/docs/dropping/drop/)
+      *
+      * @event drop
+      * @param {object} date the Moment of where the draggable was dropped
+      * @param {object} jsEvent the native javascript event with low-level information such as click coordinates
+      * @param {object} ui the jQuery UI information
+      * @param {object} resourceId will be populate if dropped on a Scheduler resource
+      */
+
+      /**
+      * Fired when an external element, containing event data, is dropped on the calendar.
+      * [Documentation](http://fullcalendar.io/docs/dropping/eventReceive/)
+      *
+      * @event event-receive
+      * @param {object} event
+      */
+
+      /**
+      * Fired when resource fetching starts/stops.
+      * [Documentation](http://fullcalendar.io/docs/resource_data/loading/)
+      *
+      * @event loading
+      * @param {object} isLoading
+      * @param {object} view
+      */
+
+      /**
+       * The underlying FullCalendar element.
+       *
+       * @type Object
+       */
+      _calendar: { type: Object, notify: true },
+
+      /**
+       * Options passed to FullCalendar.
+       *
+       * @type Object
+       */
+      options: {
+        type: Object,
+        observer: '_initialize',
+        value: function() {
+          return { };
+        },
+      },
+
+      _originalCallbacks: { type: Object },
+
+      _callbacks: {
+        type: Object,
+        readOnly: true,
+        value: function() {
+          var calendar = this;
+
+          function fireEvent(name, argumentNames) {
+            return function() {
+              if (calendar._originalCallbacks[name]) {
+                calendar._originalCallbacks[name].apply(this, arguments);
+              }
+
+              var detail = { };
+
+              for (var i = 0; i < argumentNames.length; i++) {
+                detail[argumentNames[i]] = arguments[i];
+              }
+
+              calendar.fire(camelCaseToUnderscore(name), detail);
+            };
+          }
+
+          // http://stackoverflow.com/questions/6660977/convert-hyphens-to-camel-case-camelcase#comment14968137_6661012
+          function camelCaseToUnderscore(value) {
+            return value.replace(/([a-z][A-Z])/g, function (g) { return g[0] + '-' + g[1].toLowerCase() });
+          }
+
+          return {
+            // General Display
+            viewRender: fireEvent('viewRender', ['view', 'element']),
+            viewDestroy: fireEvent('viewDestroy', ['view', 'element']),
+            // dayRender - modifies one of the arguments, pass it via options
+            windowResize: fireEvent('windowResize', ['view']),
+
+            // Clicking & Hovering
+            dayClick: fireEvent('dayClick', ['date', 'jsEvent', 'view', 'resourceObj']),
+            eventClick: fireEvent('eventClick', ['event', 'jsEvent', 'view']),
+            eventMouseover: fireEvent('eventMouseover', ['event', 'jsEvent', 'view']),
+            eventMouseout: fireEvent('eventMouseout', ['event', 'jsEvent', 'view']),
+
+            // Selection
+            select: fireEvent('select', ['start', 'end', 'jsEvent', 'view', 'resource']),
+            unselect: fireEvent('unselect', ['view', 'jsEvent']),
+
+            // Event Rendering
+            // 'eventRender', returns a value, pass it via options
+            eventAfterRender: fireEvent('eventAfterRender', ['event', 'element', 'view']),
+            eventAfterAllRender: fireEvent('eventAfterAllRender', ['view']),
+            eventDestroy: fireEvent('eventDestroy', ['event', 'element', 'view']),
+
+            // Event Draging & Resizing
+            eventDragStart: fireEvent('eventDragStart', ['event', 'jsEvent', 'ui', 'view']),
+            eventDragStop: fireEvent('eventDragStop', ['event', 'jsEvent', 'ui', 'view']),
+            eventDrop: fireEvent('eventDrop', ['event', 'delta', /*'revertFunc',*/ 'jsEvent', 'ui', 'view']),
+            eventResizeStart: fireEvent('eventResizeStart', ['event', 'jsEvent', 'ui', 'view']),
+            eventResizeStop: fireEvent('eventResizeStop', ['event', 'jsEvent', 'ui', 'view']),
+            eventResize: fireEvent('eventResize', ['event', 'delta', /*'revertFunc',*/ 'jsEvent', 'ui', 'view']),
+
+            // Dropping External Elements
+            drop: fireEvent('drop', ['date', 'jsEvent', 'ui', 'resourceId']),
+            eventReceive: fireEvent('eventReceive', ['event']),
+
+            // Timeline view
+            // dayClick - already defined
+
+            // Resource data
+            loading: fireEvent('loading', ['isLoading', 'view']),
+
+            // Resource rendering
+            // resourceText - returns a value, pass it via options
+            // resourceRender - changes arguments, pass it via options
+          };
+        },
+      },
+    },
+
+    listeners: {
+      'iron-resize': 'render',
+    },
+
+    ready: function() {
+      // https://www.polymer-project.org/1.0/docs/devguide/styling#scope-subtree
+      this.scopeSubtree(this.$.calendar, true);
+
+      this._calendar = $(this.$.calendar);
+    },
+
+    /**
+     * Initialized the calendar with the provided options.
+     */
+    _initialize: function(options) {
+      this.async(function() {
+        // Clear the previously saved callbacks
+        this._originalCallbacks = { };
+
+        var calendarOptions = { };
+
+        Object.keys(options).forEach(function(key) {
+          calendarOptions[key] = options[key];
+        })
+
+        // Hook-up our callback such taht we can fire events
+        Object.keys(this._callbacks).forEach(function(key) {
+          this._originalCallbacks[key] = options[key];
+          calendarOptions[key] = this._callbacks[key];
+        }.bind(this));
+
+        // TODO: Find a better way to update
+        this._calendar.fullCalendar('destroy');
+        this._calendar.fullCalendar(calendarOptions);
+      }.bind(this));
+    },
+
+    /**
+     * Moves the calendar one step forward (either by a month, week, or day).
+     * [Documentation](http://fullcalendar.io/docs/current_date/next/)
+     */
+    next: function() {
+      this._calendar.fullCalendar('next');
+    },
+
+    /**
+     * Moves the calendar one step back (either by a month, week, or day).
+     * [Documentation](http://fullcalendar.io/docs/current_date/prev/)
+     */
+    previous: function() {
+      this._calendar.fullCalendar('prev');
+    },
+
+    /**
+     * Immediately switches to a different view.
+     * [Documentation](http://fullcalendar.io/docs/views/changeView/)
+     *
+     * @param {string} viewName One of the [available views](http://fullcalendar.io/docs/views/Available_Views/)
+     */
+    changeView: function(viewName) {
+      this._calendar.fullCalendar('changeView', viewName);
+    },
+
+    /**
+     * Immediately forces the calendar to render and/or readjusts its size.
+     * [Documentation](http://fullcalendar.io/docs/display/render/)
+     */
+    render: function() {
+      this._calendar.fullCalendar('render');
+    },
+  };
+
+  FullCalendarBehavior = [
+    Polymer.IronResizableBehavior,
+    FullCalendarBehaviorImplementation
+  ];
+</script>
