@@ -388,6 +388,22 @@
     render: function() {
       this._calendar.fullCalendar('render');
     },
+
+    /**
+     * Navigates the calendar to today.
+     * [Documentation](http://fullcalendar.io/docs/current_date/today/)
+     */
+    today: function() {
+      this._calendar.fullCalendar('today');
+    },
+
+    /**
+     * Navigates the calendar to specific date.
+     * [Documentation](http://fullcalendar.io/docs/current_date/gotoDate/)
+     */
+    gotoDate: function(date) {
+      this._calendar.fullCalendar('gotoDate', date);
+    }
   };
 
   FullCalendarBehavior = [
