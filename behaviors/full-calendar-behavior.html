@@ -403,6 +403,54 @@
      */
     gotoDate: function(date) {
       this._calendar.fullCalendar('gotoDate', date);
+    },
+
+    /**
+     * Dynamically adds an event source.
+     * [Documentation](http://fullcalendar.io/docs/event_data/addEventSource/)
+     */
+    addEventSource: function(source) {
+      this._calendar.fullCalendar('addEventSource', source);
+    },
+
+    /**
+     * Dynamically removes an event source.
+     * [Documentation](http://fullcalendar.io/docs/event_data/removeEventSource/)
+     */
+    removeEventSource: function(source) {
+      this._calendar.fullCalendar('removeEventSource', source);
+    },
+
+    /**
+     * Retrieves all Event Source Objects.
+     * [Documentation](http://fullcalendar.io/docs/event_data/getEventSources/)
+     */
+    getEventSources: function() {
+      this._calendar.fullCalendar('getEventSources');
+    },
+
+    /**
+     * Reports changes to an event and renders them on the calendar.
+     * [Documentation](http://fullcalendar.io/docs/event_data/updateEvent/)
+     */
+    updateEvent: function(event) {
+      this._calendar.fullCalendar('updateEvent', event);
+    },
+
+    /**
+     * Removes events from the calendar.
+     * [Documentation](http://fullcalendar.io/docs/event_data/removeEvents/)
+     */
+    removeEvents: function(events) {
+      this._calendar.fullCalendar('removeEvents', events);
+    },
+
+    /**
+     * Refetches events from all sources and rerenders them on the screen.
+     * [Documentation](http://fullcalendar.io/docs/event_data/refetchEvents/)
+     */
+    refetchEvents: function() {
+      this._calendar.fullCalendar('refetchEvents');
     }
   };
 
