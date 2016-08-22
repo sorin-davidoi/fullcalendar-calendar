@@ -422,6 +422,14 @@
     },
 
     /**
+     * Dynamically removes all event sources.
+     * [Documentation](http://fullcalendar.io/docs/event_data/removeEventSources/)
+     */
+    removeEventSources: function(sources) {
+      this._calendar.fullCalendar('removeEventSources', sources);
+    },
+
+    /**
      * Retrieves all Event Source Objects.
      * [Documentation](http://fullcalendar.io/docs/event_data/getEventSources/)
      */
