@@ -36,6 +36,11 @@ The following custom properties and mixins are available for styling:
 Custom property | Description | Default
 ----------------|-------------|----------
 `--fullcalendar` | Mixin applied to the FullCalendar element | `{}`
+`--fullcalendar-borders` | Mixin applied to the FullCalendar table element's border | `{}`
+`--fullcalendar-day-numbers` | Mixin applied to the FullCalendar day number elements | `{}`
+`--fullcalendar-day-headers` | Mixin applied to the FullCalendar day header elements | `{}`
+`--fullcalendar-today` | Mixin applied to the FullCalendar today element | `{}`
+`--fullcalendar-event` | Mixin applied to the FullCalendar event element | `{}`
 
 @demo demo/index.html
 @hero hero.svg
@@ -50,6 +55,32 @@ Custom property | Description | Default
 
       #calendar {
         @apply(--fullcalendar);
+      }
+
+      #calendar .fc-divider,
+      #calendar .fc-popover,
+      #calendar .fc-row,
+      #calendar tbody,
+      #calendar td,
+      #calendar th,
+      #calendar thead {
+        @apply(--fullcalendar-borders);
+      }
+
+      #calendar .fc-day-number {
+        @apply(--fullcalendar-day-numbers);
+      }
+
+      #calendar .fc-day-header {
+        @apply(--fullcalendar-day-headers);
+      }
+
+      #calendar .fc-today {
+        @apply(--fullcalendar-today);
+      }
+
+      #calendar .fc-event {
+        @apply(--fullcalendar-event);
       }
     </style>
 

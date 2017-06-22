@@ -18,7 +18,37 @@ bower install --save fullcalendar-calendar
 <link rel="import" href="fullcalendar-theme.html">
 <link rel="import" href="fullcalendar-calendar.html">
 
-<fullcalendar-calendar></fullcalendar-calendar>
+<style>
+  #calendar {
+    --fullcalendar: {
+      background: white;
+    }
+
+    --fullcalendar-borders: {
+      border-color: black;
+    }
+
+    --fullcalendar-day-numbers: {
+        color: black;
+    }
+
+    --fullcalendar-day-headers: {
+        color: black;
+        font-weight: 500;
+    }
+
+    --fullcalendar-today: {
+        background: black;
+    }
+
+    --fullcalendar-event: {
+        background-color: magenta;
+        border-color: magenta;
+    }
+  }
+</style>
+
+<fullcalendar-calendar id="calendar"></fullcalendar-calendar>
 ```
 
 <!---

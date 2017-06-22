@@ -31,6 +31,34 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <style>
       .actions { display: flex; justify-content: space-between; align-items: center; }
+
+      #calendar {
+        --fullcalendar: {
+          background: white;
+        }
+
+        --fullcalendar-borders: {
+          border-color: black;
+        }
+
+        --fullcalendar-day-numbers: {
+            color: black;
+        }
+
+        --fullcalendar-day-headers: {
+            color: black;
+            font-weight: 500;
+        }
+
+        --fullcalendar-today: {
+            background: black;
+        }
+
+        --fullcalendar-event: {
+            background-color: magenta;
+            border-color: magenta;
+        }
+      }
     </style>
   </head>
   <body unresolved>
@@ -57,6 +85,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </div>
 
       <fullcalendar-calendar
+        id="calendar"
         options="[[options]]"
         view="{{view}}"
         on-view-render="setTitle"
