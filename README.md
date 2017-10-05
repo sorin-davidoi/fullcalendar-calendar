@@ -4,7 +4,7 @@ Web Component wrapper for [FullCalendar](http://fullcalendar.io/).
 
 Documentation and demo available [here](http://sorin-davidoi.github.io/fullcalendar-calendar/components/fullcalendar-calendar/).
 
-**Note**: This is no longer maintained and will not be ported to Polymer 2/3. However, PRs are welcomed for bugfixes.
+⚠️ This is no longer maintained and will not be ported to Polymer 2/3. However, PRs are welcomed for bugfixes. ⚠️ 
 
 # Install
 
