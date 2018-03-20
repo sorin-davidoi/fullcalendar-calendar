@@ -37,10 +37,18 @@ Custom property | Description | Default
 ----------------|-------------|----------
 `--fullcalendar` | Mixin applied to the FullCalendar element | `{}`
 `--fullcalendar-borders` | Mixin applied to the FullCalendar table element's border | `{}`
+`--fullcalendar-toolbar` | Mixin applied to the FullCalendar toolbar | `{}`
+`--fullcalendar-toolbar-left` | Mixin applied to the FullCalendar left side of the toolbar with the month and year title | `{}`
+`--fullcalendar-toolbar-center` | Mixin applied to the FullCalendar center toolbar | `{}`
+`--fullcalendar-toolbar-right` | Mixin applied to the FullCalendar right side of the toolbar with the navigation buttons | `{}`
+`--fullcalendar-button` | Mixin applied to the FullCalendar navigation buttons | `{}`
 `--fullcalendar-day-numbers` | Mixin applied to the FullCalendar day number elements | `{}`
 `--fullcalendar-day-headers` | Mixin applied to the FullCalendar day header elements | `{}`
 `--fullcalendar-today` | Mixin applied to the FullCalendar today element | `{}`
 `--fullcalendar-event` | Mixin applied to the FullCalendar event element | `{}`
+`--fullcalendar-content` | Mixin applied to the FullCalendar content which includes the time and the title  | `{}`
+`--fullcalendar-content-time` | Mixin applied to the FullCalendar content title   `{}`
+`--fullcalendar-content-title` | Mixin applied to the FullCalendar content title | `{}`
 
 @demo demo/index.html
 @hero hero.svg
@@ -67,6 +75,26 @@ Custom property | Description | Default
         @apply(--fullcalendar-borders);
       }
 
+      #calendar .fc-toolbar {
+        @apply(--fullcalendar-toolbar);
+      }
+
+      #calendar .fc-toolbar .fc-left {
+        @apply(--fullcalendar-toolbar-left);
+      }
+
+      #calendar .fc-toolbar .fc-center {
+        @apply(--fullcalendar-toolbar-center);
+      }
+
+      #calendar .fc-toolbar .fc-right {
+        @apply(--fullcalendar-toolbar-right);
+      }
+
+      #calendar .fc-button {
+        @apply(--fullcalendar-button);
+      }
+
       #calendar .fc-day-number {
         @apply(--fullcalendar-day-numbers);
       }
@@ -81,6 +109,16 @@ Custom property | Description | Default
 
       #calendar .fc-event {
         @apply(--fullcalendar-event);
+      }
+
+      #calendar .fc-content {
+        @apply(--fullcalendar-content);
+      }
+      #calendar .fc-content .fc-time {
+        @apply(--fullcalendar-content-time);
+      }
+      #calendar .fc-content .fc-title {
+        @apply(--fullcalendar-content-title);
       }
     </style>
 
